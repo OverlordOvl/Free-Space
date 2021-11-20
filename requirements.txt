@@ -3,3 +3,4 @@ kivy
 wheel
 loguru
 setuptools
+kivymd
