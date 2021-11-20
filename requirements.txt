@@ -1,3 +1,4 @@
 twisted
 kivy
 wheel
+loguru
