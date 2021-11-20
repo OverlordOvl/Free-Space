@@ -2,3 +2,4 @@ twisted
 kivy
 wheel
 loguru
+setuptools
