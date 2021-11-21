@@ -8,9 +8,7 @@ from kivymd.theming import ThemeManager
 from Screens import __ALL_SCREENS__
 
 
-def get_kv():
-    with open("kv/client.kv", encoding="utf-8") as f:
-        return Builder.load_string(f.read())
+Builder.load_string(open("kv/client.kv", encoding="utf-8").read())
 
 
 class SM(ScreenManager):
@@ -37,7 +35,6 @@ class FreeSpaceApp(MDApp):
         return self.initialize()
 
     def initialize(self):
-        get_kv()
         return SM()
 
 

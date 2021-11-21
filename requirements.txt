@@ -4,3 +4,4 @@ wheel
 loguru
 setuptools
 kivymd
+black
