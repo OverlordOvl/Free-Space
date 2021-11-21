@@ -5,6 +5,8 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, WipeTransition
 from kivymd.theming import ThemeManager
 
+from Screens import __ALL_SCREENS__
+
 
 def get_kv():
     with open("kv/client.kv", encoding="utf-8") as f:
@@ -25,7 +27,7 @@ class SM(ScreenManager):
             self.current = self.previous()
 
 
-class MainApp(MDApp):
+class FreeSpaceApp(MDApp):
 
     def build(self):
         self.title = "Free Space"
@@ -35,7 +37,8 @@ class MainApp(MDApp):
         return self.initialize()
 
     def initialize(self):
+        get_kv()
         return SM()
 
 
-MainApp().run()
+FreeSpaceApp().run()

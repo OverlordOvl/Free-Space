@@ -1,2 +1,44 @@
-#:kivy 1.10.1
+#:kivy 2.0.0
 <SM>:
+    Main:
+        id: Main
+        name: "Main"
+    Login:
+        id: Login
+        name: "Login"
+
+
+
+<Main>:
+    size:(root.width,root.height)
+
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'center'
+
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 10
+            size_hint:(.35, None)
+            size:(root.width, dp(100))
+
+            MDRoundFlatButton:
+                font_size: dp(12)
+                opposite_colors: True
+                size_hint: (1, 1)
+                text: "Login"
+                on_press:
+                    root.manager.current = 'Login'
+
+            MDRoundFlatButton:
+                font_size: dp(12)
+                opposite_colors: True
+                size_hint: (1, 1)
+                text: "Registration"
+                on_press:
+                    root.manager.current = 'Registration'
+
+
+<Registration>:
+
+<Login>:
