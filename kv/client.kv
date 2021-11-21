@@ -11,14 +11,14 @@
         name: "Registration"
 
 
-<ScreenBackBtn@AnchorLayout>:
+<MainScreenBackBtn@AnchorLayout>:
     padding: 15, 10, 0, 0
     anchor_x: "left"
     anchor_y: "top"
     MDRaisedButton:
         text: "Back"
         on_press:
-            self.parent.parent.manager.current = self.parent.parent.manager.previous()
+            self.parent.parent.manager.current = "Main"
 
 
 
@@ -58,7 +58,7 @@
 
 
 <Login>:
-    ScreenBackBtn
+    MainScreenBackBtn
     AnchorLayout:
         anchor_x: "center"
         anchor_y: "center"
@@ -108,6 +108,8 @@
 
 
 <Registration>:
+    MainScreenBackBtn
+
     AnchorLayout:
         anchor_x: 'center'
         anchor_y: 'center'
