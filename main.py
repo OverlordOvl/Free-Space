@@ -3,6 +3,7 @@ from kivymd.app import MDApp
 
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, WipeTransition
+from kivymd.theming import ThemeManager
 
 
 def get_kv():
@@ -28,6 +29,8 @@ class MainApp(MDApp):
 
     def build(self):
         self.title = "Free Space"
+        self.theme_cls = ThemeManager()
+        self.theme_cls.theme_style = "Dark"
         # self.icon = "Image/main.jpeg"
         return self.initialize()
 
