@@ -5,6 +5,7 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, WipeTransition
 from kivymd.theming import ThemeManager
 
+
 from Screens import __ALL_SCREENS__
 
 
