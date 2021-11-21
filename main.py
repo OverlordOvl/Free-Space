@@ -1,11 +1,38 @@
+import os
 from kivymd.app import MDApp
-from kivymd.uix.label import MDLabel
+
+from kivy.lang import Builder
+from kivy.uix.screenmanager import ScreenManager, WipeTransition
+
+
+def get_kv():
+    with open("kv/client.kv", encoding="utf-8") as f:
+        return Builder.load_string(f.read())
+
+
+class SM(ScreenManager):
+    """Window change manager"""
+
+    def __init__(self, **kwargs):
+        super(SM, self).__init__(**kwargs)
+        self.transition = WipeTransition(duration=0.4)
+
+    @staticmethod
+    def hook_keyboard(self, window, key, *args, **kwargs):
+        del args, kwargs
+        if key == 27:
+            self.current = self.previous()
 
 
 class MainApp(MDApp):
 
     def build(self):
-        return MDLabel(text="Hello, World", halign="center")
+        self.title = "Free Space"
+        # self.icon = "Image/main.jpeg"
+        return self.initialize()
+
+    def initialize(self):
+        return SM()
 
 
 MainApp().run()
