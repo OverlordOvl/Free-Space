@@ -11,13 +11,26 @@
         name: "Registration"
 
 
+<ScreenBackBtn@AnchorLayout>:
+    padding: 15, 10, 0, 0
+    anchor_x: "left"
+    anchor_y: "top"
+    MDRaisedButton:
+        text: "Back"
+        on_press:
+            self.parent.parent.manager.current = self.parent.parent.manager.previous()
+
+
+
 <Main>:
     size:(root.width,root.height)
 
     AnchorLayout:
         anchor_x: 'center'
         anchor_y: 'center'
+
         BoxLayout:
+            spacing: dp(5)
             size_hint:(.5, None)
             orientation: 'horizontal'
 
@@ -28,7 +41,7 @@
                 size:(root.width, dp(100))
 
                 MDRoundFlatButton:
-                    font_size: dp(12)
+                    font_size: dp(16)
                     opposite_colors: True
                     size_hint: (1, 1)
                     text: "Login"
@@ -36,12 +49,62 @@
                         root.manager.current = 'Login'
 
                 MDRoundFlatButton:
-                    font_size: dp(12)
+                    font_size: dp(16)
                     opposite_colors: True
                     size_hint: (1, 1)
                     text: "Registration"
                     on_press:
                         root.manager.current = 'Registration'
+
+
+<Login>:
+    ScreenBackBtn
+    AnchorLayout:
+        anchor_x: "center"
+        anchor_y: "center"
+
+        BoxLayout:
+            size_hint: [0.6, None]
+            orientation: "vertical"
+            spacing: dp(10)
+            MDTextField:
+                id: login
+                hint_text: "Your login"
+                helper_text: "Please, enter your login here"
+                helper_text_mode: "on_focus"
+                icon_left: 'account'
+                write_tab: False
+
+
+            MDRelativeLayout:
+                size_hint_y: None
+                height: password.height
+                MDTextField:
+                    id: password
+                    hint_text: "Your password"
+                    password: True
+                    password_mask: "*"
+                    helper_text: "Please, enter your password here"
+                    helper_text_mode: "on_focus"
+                    icon_left: 'key-variant'
+                    write_tab: False
+
+                MDIconButton:
+                    icon: "eye-off"
+                    ripple_scale: .5
+                    pos_hint: {"center_y": .6}
+                    pos: password.width - self.width + dp(8), 0
+                    on_release:
+                        self.icon = "eye" if self.icon == "eye-off" else "eye-off"
+                        password.password = False if password.password is True else True
+
+
+            MDRoundFlatButton:
+                text: "Enter"
+                size_hint_x: 1
+                font_size: dp(16)
+                on_press:
+                    root.validate()
 
 
 <Registration>:
@@ -81,7 +144,6 @@
                 text: "Registration"
                 size_hint: (1,None)
 
-<Login>:
 
 
 
