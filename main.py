@@ -1,42 +1,25 @@
-import os
-from kivymd.app import MDApp
+import webbrowser
+
+from kivy.support import install_twisted_reactor
 
 from kivy.lang import Builder
-from kivy.uix.screenmanager import ScreenManager, WipeTransition
-from kivymd.theming import ThemeManager
+from pyutils.kv_utils.base import BaseApp
+# from pyutils.session import client
 
 
-from Screens import __ALL_SCREENS__
+install_twisted_reactor()
+
+from screens import __ALL_SCREENS__
 
 
-Builder.load_string(open("kv/client.kv", encoding="utf-8").read())
-
-
-class SM(ScreenManager):
-    """Window change manager"""
-
-    def __init__(self, **kwargs):
-        super(SM, self).__init__(**kwargs)
-        self.transition = WipeTransition(duration=0.4)
+class FreeSpaceApp(BaseApp):
+    title = 'FreeSpace'
 
     @staticmethod
-    def hook_keyboard(self, window, key, *args, **kwargs):
-        del args, kwargs
-        if key == 27:
-            self.current = self.previous()
+    def open_github():
+        webbrowser.open('https://github.com/OverlordOvl/Free-Space')
 
 
-class FreeSpaceApp(MDApp):
-
-    def build(self):
-        self.title = "Free Space"
-        self.theme_cls = ThemeManager()
-        self.theme_cls.theme_style = "Dark"
-        # self.icon = "Image/main.jpeg"
-        return self.initialize()
-
-    def initialize(self):
-        return SM()
-
-
-FreeSpaceApp().run()
+if __name__ == '__main__':
+    Builder.load_string(open("kv/client.kv", encoding="utf-8").read())
+    FreeSpaceApp().run()

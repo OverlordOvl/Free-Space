@@ -1,4 +1,4 @@
-from Screens.screen_manager import InitScreen
+from screens.screen_manager import InitScreen
 
 
 class Registration(InitScreen):

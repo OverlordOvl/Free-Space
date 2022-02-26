@@ -5,3 +5,6 @@ loguru
 setuptools
 kivymd
 black
+pyjnius
+python-dotenv
+pyopenssl
