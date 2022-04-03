@@ -1,0 +1,44 @@
+
+<Registration>:
+    MainScreenBackBtn
+
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'center'
+        BoxLayout:
+            size_hint:(.7, None)
+            orientation: 'vertical'
+            spacing: dp(10)
+
+            MDLabel:
+                text: "Create Account"
+                font_size: dp(20)
+
+            MDTextField:
+                write_tab: False
+                hint_text: "Username"
+                required: True
+                helper_text_mode: "on_focus"
+
+            MDTextField:
+                write_tab: False
+                required: True
+                hint_text: "Password"
+                helper_text: "Must contain at least eight characters, include letters, numbers and special characters"
+                helper_text_mode: "on_focus"
+                password: True
+                password_mask: "*"
+
+            MDTextField:
+                write_tab: False
+                required: True
+                hint_text: "Repeat Password"
+                helper_text: "Must contain at least eight characters, include letters, numbers and special characters"
+                helper_text_mode: "on_focus"
+                password: True
+                password_mask: "*"
+            MDRoundFlatButton:
+                text: "Registration"
+                size_hint: (1,None)
+
+

@@ -1,7 +1,10 @@
-from Screens.screen_manager import InitScreen
+from abc import ABC
+
+from screens.screen_manager import InitScreen
 
 
 class Login(InitScreen):
+    __metaclass__ = ABC
 
     def __init__(self, **kwargs):
         super(Login, self).__init__(**kwargs)

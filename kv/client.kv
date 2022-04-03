@@ -1,14 +1,9 @@
 #:kivy 2.0.0
-<SM>:
-    Main:
-        id: Main
-        name: "Main"
-    Login:
-        id: Login
-        name: "Login"
-    Registration:
-        id: Registration
-        name: "Registration"
+#:include kv/screen_manager.kv
+#:include kv/buttons.kv
+#:include kv/screens/select_server.kv
+#:include kv/screens/registration.kv
+
 
 
 <MainScreenBackBtn@AnchorLayout>:
@@ -25,36 +20,35 @@
 <Main>:
     size:(root.width,root.height)
 
-    AnchorLayout:
-        anchor_x: 'center'
-        anchor_y: 'center'
+    MDBoxLayout:
+        orientation: "vertical"
 
-        BoxLayout:
-            spacing: dp(5)
-            size_hint:(.5, None)
-            orientation: 'horizontal'
+        MDFloatLayout:
 
-            BoxLayout:
+            MDBoxLayout:
                 orientation: 'vertical'
-                spacing: 10
-                size_hint:(1, None)
-                size:(root.width, dp(100))
+                adaptive_height: True
+                width: root.width - dp(72)
+                size_hint_x: None
+                padding: '12dp'
+                spacing: '20dp'
+                md_bg_color: 1, 1, 1, .5
+                pos_hint: {'center_x': .5, 'center_y': .5}
 
-                MDRoundFlatButton:
-                    font_size: dp(16)
-                    opposite_colors: True
-                    size_hint: (1, 1)
+                MainScreenButton:
                     text: "Login"
                     on_press:
                         root.manager.current = 'Login'
 
-                MDRoundFlatButton:
-                    font_size: dp(16)
-                    opposite_colors: True
-                    size_hint: (1, 1)
+                MainScreenButton:
                     text: "Registration"
                     on_press:
                         root.manager.current = 'Registration'
+
+                MainScreenButton:
+                    text: "Chat"
+                    on_press:
+                        root.manager.current = 'Chat'
 
 
 <Login>:
@@ -107,45 +101,23 @@
                     root.validate()
 
 
-<Registration>:
+
+<Chat>:
     MainScreenBackBtn
 
-    AnchorLayout:
-        anchor_x: 'center'
-        anchor_y: 'center'
+    BoxLayout:
+        orientation: "vertical"
+
         BoxLayout:
-            size_hint:(.7, None)
-            orientation: 'vertical'
-            spacing: 5
-
-            Label:
-                text: "Create Account"
-                font_size: dp(20)
-
+            spacing: dp(10)
             MDTextField:
-                write_tab: False
-                hint_text: "Username"
-                helper_text_mode: "on_focus"
+                id: input
+                height: dp(40)
+                size_hint: [.8, None]
+                on_text_validate:
+                    root.send_message()
 
-            MDTextField:
-                write_tab: False
-                hint_text: "Password"
-                helper_text: "Must contain at least eight characters, include letters, numbers and special characters"
-                helper_text_mode: "on_focus"
-                password: True
-                password_mask: "*"
-
-            MDTextField:
-                write_tab: False
-                hint_text: "Repeat Password"
-                helper_text: "Must contain at least eight characters, include letters, numbers and special characters"
-                helper_text_mode: "on_focus"
-                password: True
-                password_mask: "*"
             MDRoundFlatButton:
-                text: "Registration"
-                size_hint: (1,None)
-
-
-
-
+                text: "send"
+                on_release:
+                    root.send_message()
